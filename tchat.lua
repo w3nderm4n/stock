@@ -32,7 +32,7 @@ end
 
 local function writeMessage()
     local options = {
-        prefix:"test"
+        prefix = "test"
     }
     while true do
         draw()
