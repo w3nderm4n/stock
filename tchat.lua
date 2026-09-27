@@ -18,9 +18,9 @@ end
 
 local function receive()
     while true do
-        local _, name, msg = os.pullEvent("chat")
+        local event, uuid, username, message, isHidden = os.pullEvent("chat")
 
-        table.insert(messages, "<" .. name .. "> " .. msg)
+        table.insert(messages, "<" .. username .. "> " .. message)
 
         if #messages > 15 then
             table.remove(messages, 1)
@@ -31,14 +31,17 @@ local function receive()
 end
 
 local function writeMessage()
+    local options = {
+        prefix:"test"
+    }
     while true do
         draw()
 
         local msg = read()
 
         if msg ~= "" then
-            chat.sendMessage(msg)
-            table.insert(messages, "<Moi> " .. msg)
+            chat.sendMessage(msg,options)
+            table.insert(messages, "<MOI> " .. msg)
         end
     end
 end
